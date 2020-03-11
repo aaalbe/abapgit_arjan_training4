@@ -1,0 +1,27 @@
+managed implementation in class zbp_ajbb_cds_location unique;
+
+define behavior for ZAJBB_CDS_LOCATION alias Location
+persistent table zaj_dt_location
+lock master
+//authorization master ( instance )
+etag master changedat
+
+{
+  create;
+  update;
+  delete;
+  mapping for zaj_dt_location corresponding;
+  determination DeterminationForNewRecord on save { create; }
+  field ( readonly ) reviewrate, rating, seats_unit, seats_booked, changedat, changedby, createdat, createdby, ticketpriceineuro, currencyeuro;
+  field ( mandatory ) street, houseno, postalcode, city, area, attraction, phone, website, ticketprice, currency, seats_total;
+  field ( features : instance ) locationid, location;
+
+
+  validation ValidationOnKeyfields      on save { field locationid; }
+  validation ValidationOnLocation       on save { field location, attraction; }
+  validation ValidationOnAddress        on save { field street, houseno, postalcode, city, area; }
+  validation ValidationOnTicketPrice    on save { field ticketprice, currency; }
+  validation ValidationOthers           on save { field phone, website, seats_total; }
+
+  action get_geolocation result [1] $self;
+}

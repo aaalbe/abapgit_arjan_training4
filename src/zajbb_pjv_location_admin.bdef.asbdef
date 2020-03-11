@@ -1,0 +1,10 @@
+projection;
+
+define behavior for Zajbb_pjv_location_admin
+{
+  use create;
+  use update;
+  use delete;
+  use action get_geolocation external 'get_coordinates';
+  // use action get_geolocation as get_coordinates;
+}

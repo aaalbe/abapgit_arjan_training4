@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service Location'
+define service Zaj_service_definition {
+  expose ZAJBB_CDS_LOCATION as location;
+  expose Zajbb_cds_bookings as bookings;
+  expose zajbb_cds_bookings_cube as bookingscube;
+  expose Zajbb_pjv_location_admin as locationforadmin;
+  expose ZAJBB_PJV_LOCATION_CITIZEN as locationforcitizen;
+}
